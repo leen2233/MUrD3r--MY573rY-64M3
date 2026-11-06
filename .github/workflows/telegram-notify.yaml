@@ -1,12 +1,11 @@
 name: Telegram Notification
 
 on:
+  push:
   issues:
     types: [opened, edited, assigned, labeled, closed]
   issue_comment:
     types: [created]
-  projects_v2_item:
-    types: [added, edited] # For Kanban project board updates
 
 jobs:
   notify:
@@ -19,12 +18,8 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           parse_mode: "Markdown"
           message: |
-            *Repo:* `[[repository]]`
+            *Repo:* `${{ github.repository }}`
             *Event:* `${{ github.event_name }}`
-            *Action:* `${{ github.event.action }}`
             *User:* `${{ github.actor }}`
 
-            **Details:**
-            ${{ github.event.issue.title || github.event.comment.body || 'Kanban / Project Update' }}
-
-            🔗 [View on GitHub](${{ github.event.issue.html_url || github.event.repository.html_url }})
+            🔗 [View Repository](${{ github.event.repository.html_url }})
