@@ -21,5 +21,3 @@ jobs:
             *Repo:* `${{ github.repository }}`
             *Event:* `${{ github.event_name }}`
             *User:* `${{ github.actor }}`
-
-            🔗 [View Repository](${{ github.event.repository.html_url }})
