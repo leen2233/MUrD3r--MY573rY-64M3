@@ -3,7 +3,7 @@ name: Telegram Notification
 on:
   push:
   issues:
-    types: [opened, edited, assigned, labeled, closed]
+    types: [opened, edited, assigned, unassigned, labeled, unlabeled, closed, reopened]
   issue_comment:
     types: [created]
 
@@ -11,7 +11,54 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send issue comment to Telegram
+      - name: Notify about issue assignment
+        if: github.event_name == 'issues' && (github.event.action == 'assigned' || github.event.action == 'unassigned')
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            👤 Issue ${{ github.event.action }}
+            ━━━━━━━━━━━━━
+            Repository: ${{ github.repository }}
+            Issue: #${{ github.event.issue.number }} — ${{ github.event.issue.title }}
+            Assignee: ${{ github.event.assignee.login }}
+            Changed by: ${{ github.actor }}
+
+            View issue: ${{ github.event.issue.html_url }}
+
+      - name: Notify about issue label
+        if: github.event_name == 'issues' && (github.event.action == 'labeled' || github.event.action == 'unlabeled')
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🏷️ Label ${{ github.event.action }}
+            ━━━━━━━━━━━━━
+            Repository: ${{ github.repository }}
+            Issue: #${{ github.event.issue.number }} — ${{ github.event.issue.title }}
+            Label: ${{ github.event.label.name }}
+            Changed by: ${{ github.actor }}
+
+            View issue: ${{ github.event.issue.html_url }}
+
+      - name: Notify about other issue changes
+        if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'edited' || github.event.action == 'closed' || github.event.action == 'reopened')
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            📌 Issue ${{ github.event.action }}
+            ━━━━━━━━━━━━━
+            Repository: ${{ github.repository }}
+            Issue: #${{ github.event.issue.number }} — ${{ github.event.issue.title }}
+            Changed by: ${{ github.actor }}
+
+            View issue: ${{ github.event.issue.html_url }}
+
+      - name: Notify about issue comment
         if: github.event_name == 'issue_comment'
         uses: appleboy/telegram-action@master
         with:
@@ -24,26 +71,11 @@ jobs:
             Issue: #${{ github.event.issue.number }} — ${{ github.event.issue.title }}
             Comment by: ${{ github.event.comment.user.login }}
 
-            “${{ github.event.comment.body }}”
+            ${{ github.event.comment.body }}
 
             View comment: ${{ github.event.comment.html_url }}
 
-      - name: Send issue update to Telegram
-        if: github.event_name == 'issues'
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            📌 Issue ${{ github.event.action }}
-            ━━━━━━━━━━━━━
-            Repository: ${{ github.repository }}
-            Issue: #${{ github.event.issue.number }} — ${{ github.event.issue.title }}
-            By: ${{ github.actor }}
-
-            View issue: ${{ github.event.issue.html_url }}
-
-      - name: Send push notification to Telegram
+      - name: Notify about push
         if: github.event_name == 'push'
         uses: appleboy/telegram-action@master
         with:
@@ -53,5 +85,10 @@ jobs:
             🚀 New push
             ━━━━━━━━━━━━━
             Repository: ${{ github.repository }}
-            Branch: ${{ github.ref_name }}
-            By: ${{ github.actor }}
+            Branch or tag: ${{ github.ref_name }}
+            Pushed by: ${{ github.actor }}
+
+            Latest commit:
+            ${{ github.event.head_commit.message }}
+
+            View push: ${{ github.event.compare }}
