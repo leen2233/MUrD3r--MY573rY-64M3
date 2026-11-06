@@ -11,13 +11,47 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Telegram Notification
+      - name: Send issue comment to Telegram
+        if: github.event_name == 'issue_comment'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          parse_mode: "Markdown"
           message: |
-            Repo: ${{ github.repository }}
-            Event: ${{ github.event_name }}
-            User: ${{ github.actor }}
+            💬 New comment
+            ━━━━━━━━━━━━━
+            Repository: ${{ github.repository }}
+            Issue: #${{ github.event.issue.number }} — ${{ github.event.issue.title }}
+            Comment by: ${{ github.event.comment.user.login }}
+
+            “${{ github.event.comment.body }}”
+
+            View comment: ${{ github.event.comment.html_url }}
+
+      - name: Send issue update to Telegram
+        if: github.event_name == 'issues'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            📌 Issue ${{ github.event.action }}
+            ━━━━━━━━━━━━━
+            Repository: ${{ github.repository }}
+            Issue: #${{ github.event.issue.number }} — ${{ github.event.issue.title }}
+            By: ${{ github.actor }}
+
+            View issue: ${{ github.event.issue.html_url }}
+
+      - name: Send push notification to Telegram
+        if: github.event_name == 'push'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🚀 New push
+            ━━━━━━━━━━━━━
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            By: ${{ github.actor }}
