@@ -4,9 +4,6 @@ var passed_time = 0
 var progress = 0
 var changed_chars = {}
 
-const ORIGINAL_TEXT = '[color=#00Bfff]THIS[/color]
-LEADS       
-TO [color="#ff007a"]YOU[/color]'
 const LEET_CHARS_DICT = {"T": "7", "I": "1", "S": "5", "E": "3", "A": "V", "O":"0"}
 const LEET_CHARs = "TISEAO"
 
@@ -35,7 +32,9 @@ func _process(delta: float) -> void:
 			var ch_to_change = LEET_CHARs[5 - progress]
 			if ch_to_change not in changed_chars or not changed_chars[ch_to_change]:
 				t = t.replace(ch_to_change, LEET_CHARS_DICT[ch_to_change])
-				
+			
+		t = t.replace("Ta", "7a").replace("OO", "00")
+		print(t)
 		text = t
 		passed_time = 0
 		

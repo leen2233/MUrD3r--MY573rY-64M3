@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2yvq6yiiep7y"]
 
-[ext_resource type="Texture2D" uid="uid://brkf765y0xpqb" path="res://assets/images/photo_2026-11-15_16-42-20.jpg" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://brkf765y0xpqb" path="res://assets/images/main_menu_bg.jpg" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://cr6uhbgw01obg" path="res://assets/images/button_texture.jpg" id="2_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://cloj0jn3oa7fx" path="res://assets/images/button_pressed.jpg" id="3_8ln24"]
 [ext_resource type="Texture2D" uid="uid://yhrqesx8s0jk" path="res://assets/images/button_hover.jpg" id="3_wu84c"]
@@ -30,7 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Photo20261115164220" type="Sprite2D" parent="." unique_id=120776709]
+[node name="bg" type="Sprite2D" parent="." unique_id=120776709]
 position = Vector2(575.24994, 322.62497)
 scale = Vector2(0.6863038, 0.68730074)
 texture = ExtResource("1_l6cm7")
@@ -201,7 +201,7 @@ theme_override_font_sizes/normal_font_size = 56
 bbcode_enabled = true
 text = "[color=#00BFFF]THIS[/color]
 LEADS       
-TO [color=\"#FF007A\"]YOU[/color]"
+TO [color=\"#FF007a\"]YOU[/color]"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("11_lgwnu")
