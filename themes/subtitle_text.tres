@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://bgauhvmqif82y"]
+
+[ext_resource type="FontFile" uid="uid://btb57ncmnxqie" path="res://assets/fonts/DM_Sans/static/DMSans_24pt-Medium.ttf" id="1_gqv6c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t652m"]
+bg_color = Color(0, 0, 0, 0.7294118)
+
+[resource]
+RichTextLabel/font_sizes/normal_font_size = 90
+RichTextLabel/fonts/normal_font = ExtResource("1_gqv6c")
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_t652m")

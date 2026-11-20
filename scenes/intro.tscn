@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c7yllr3e3jqbl" path="res://assets/images/file_icon.png" id="9_t1qkj"]
 [ext_resource type="Texture2D" uid="uid://d00jftnv3j64n" path="res://assets/images/pressed.png" id="10_37iue"]
 [ext_resource type="Texture2D" uid="uid://skve8j1qfc0k" path="res://assets/images/hover.png" id="10_272cy"]
+[ext_resource type="Theme" uid="uid://bgauhvmqif82y" path="res://themes/subtitle_text.tres" id="12_n6p8m"]
 
 [node name="Intro" type="Control" unique_id=126197322]
 layout_mode = 3
@@ -31,7 +32,14 @@ position = Vector2(563, 31.375002)
 scale = Vector2(0.35857493, 0.3442982)
 texture = ExtResource("3_wfs7u")
 
-[node name="Image1" type="NinePatchRect" parent="." unique_id=1948528314]
+[node name="WindowsContainer" type="Control" parent="." unique_id=1999023418]
+layout_mode = 1
+anchor_right = 0.998
+anchor_bottom = 0.99200004
+offset_right = 0.30395508
+offset_bottom = 0.18395996
+
+[node name="Image1" type="NinePatchRect" parent="WindowsContainer" unique_id=1948528314]
 z_index = 1
 layout_mode = 0
 offset_left = 139.0
@@ -45,13 +53,42 @@ patch_margin_top = 522
 patch_margin_right = 549
 patch_margin_bottom = 503
 
-[node name="1" type="Sprite2D" parent="Image1" unique_id=640824302]
+[node name="1" type="Sprite2D" parent="WindowsContainer/Image1" unique_id=640824302]
 z_as_relative = false
 position = Vector2(1216.5442, 995.58813)
 scale = Vector2(1.5655468, 1.53017)
 texture = ExtResource("5_wfs7u")
 
-[node name="Image2" type="NinePatchRect" parent="." unique_id=2072312131]
+[node name="SubtitlesContainer" type="Control" parent="WindowsContainer/Image1" unique_id=332060018]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1073.5293
+offset_top = -211.76563
+offset_right = 1073.5293
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -1)
+
+[node name="SubtitleText" type="RichTextLabel" parent="WindowsContainer/Image1/SubtitlesContainer" unique_id=355414966]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_n6p8m")
+text = "Fuck you!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Image2" type="NinePatchRect" parent="WindowsContainer" unique_id=2072312131]
 z_index = 2
 layout_mode = 0
 offset_left = 63.000015
@@ -65,14 +102,43 @@ patch_margin_top = 522
 patch_margin_right = 549
 patch_margin_bottom = 503
 
-[node name="2" type="Sprite2D" parent="Image2" unique_id=327437486]
+[node name="2" type="Sprite2D" parent="WindowsContainer/Image2" unique_id=327437486]
 z_index = 1
 z_as_relative = false
 position = Vector2(1224.2648, 995.5883)
 scale = Vector2(1.5792575, 1.5572525)
 texture = ExtResource("7_t1qkj")
 
-[node name="Image3" type="NinePatchRect" parent="." unique_id=522817332]
+[node name="SubtitlesContainer" type="Control" parent="WindowsContainer/Image2" unique_id=903170740]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1073.5293
+offset_top = -211.76563
+offset_right = 1073.5293
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -1)
+
+[node name="SubtitleText" type="RichTextLabel" parent="WindowsContainer/Image2/SubtitlesContainer" unique_id=1252196542]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_n6p8m")
+text = "Fuck you!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Image3" type="NinePatchRect" parent="WindowsContainer" unique_id=522817332]
 z_index = 3
 layout_mode = 0
 offset_left = 213.99998
@@ -86,14 +152,43 @@ patch_margin_top = 522
 patch_margin_right = 549
 patch_margin_bottom = 503
 
-[node name="3" type="Sprite2D" parent="Image3" unique_id=1451860293]
+[node name="3" type="Sprite2D" parent="WindowsContainer/Image3" unique_id=1451860293]
 z_index = 2
 z_as_relative = false
 position = Vector2(1217.647, 1000.73553)
 scale = Vector2(1.5883981, 1.5694401)
 texture = ExtResource("8_272cy")
 
-[node name="Image4" type="NinePatchRect" parent="." unique_id=78935679]
+[node name="SubtitlesContainer" type="Control" parent="WindowsContainer/Image3" unique_id=1783727770]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1073.5293
+offset_top = -211.76563
+offset_right = 1073.5293
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -1)
+
+[node name="SubtitleText" type="RichTextLabel" parent="WindowsContainer/Image3/SubtitlesContainer" unique_id=325362144]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_n6p8m")
+text = "Fuck you!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Image4" type="NinePatchRect" parent="WindowsContainer" unique_id=78935679]
 z_index = 4
 layout_mode = 0
 offset_left = 139.00003
@@ -107,12 +202,41 @@ patch_margin_top = 522
 patch_margin_right = 549
 patch_margin_bottom = 503
 
-[node name="4" type="Sprite2D" parent="Image4" unique_id=918490467]
+[node name="4" type="Sprite2D" parent="WindowsContainer/Image4" unique_id=918490467]
 z_index = 3
 z_as_relative = false
 position = Vector2(1219.1176, 988.2352)
 scale = Vector2(1.5660546, 1.549128)
 texture = ExtResource("9_37iue")
+
+[node name="SubtitlesContainer" type="Control" parent="WindowsContainer/Image4" unique_id=113861458]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1073.5293
+offset_top = -211.76465
+offset_right = 1073.5293
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -1)
+
+[node name="SubtitleText" type="RichTextLabel" parent="WindowsContainer/Image4/SubtitlesContainer" unique_id=1256553715]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_n6p8m")
+text = "Fuck you!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1561513372]
 layout_mode = 0
